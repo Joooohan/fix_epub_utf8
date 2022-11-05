@@ -4,11 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-epub = "*"
 beautifulsoup4 = "*"
 
 [dev-packages]
 ipykernel = "*"
+black = "*"
+isort = "*"
 
 [requires]
 python_version = "3.8"

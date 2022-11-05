@@ -36,7 +36,7 @@ with tempfile.TemporaryDirectory() as tmp_dir:
     with zipfile.ZipFile(file_path, "r") as book:
         book.extractall(folder_path)
 
-    # Add meta tag to specify utf-8 encoding
+    # Edit XHTML files: add meta tag to specify utf-8 encoding
     xml_folder = folder_path / "OPS" / "xhtml"
     for file_name in os.listdir(xml_folder):
         xml_path = xml_folder / file_name
@@ -55,7 +55,7 @@ with tempfile.TemporaryDirectory() as tmp_dir:
     with zipfile.ZipFile(out_path, "w") as new_book:
         # `mimetype` should be written first without compression
         arcname = "mimetype"
-        mime_file  = folder_path / arcname
+        mime_file = folder_path / arcname
         with open(mime_file, "rb") as f:
             new_book.writestr(arcname, f.read())
 
