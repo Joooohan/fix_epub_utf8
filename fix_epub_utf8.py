@@ -37,7 +37,16 @@ with tempfile.TemporaryDirectory() as tmp_dir:
         book.extractall(folder_path)
 
     # Edit XHTML files: add meta tag to specify utf-8 encoding
-    xml_folder = folder_path / "OPS" / "xhtml"
+    for content_folder in ["OPS", "OEBPS"]:
+        xml_folder = folder_path / content_folder / "xhtml"
+        if xml_folder.exists():
+            break
+
+    if not xml_folder.exists():
+        raise FileNotFoundError(
+            f"Content folder not found in {os.listdir(folder_path)}"
+        )
+
     for file_name in os.listdir(xml_folder):
         xml_path = xml_folder / file_name
         with open(xml_path) as f:
